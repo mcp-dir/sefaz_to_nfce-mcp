@@ -1,0 +1,33 @@
+# Smithery configuration for SEFAZ TO: NFC-e
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_sefaz_to_nfce
+
+name: sefaz_to_nfce-mcp
+displayName: "SEFAZ TO: NFC-e"
+description: >
+  SEFAZ TO: NFC-e, consulta em fonte oficial. Hospedado pela plataforma, sem credenciais da plataforma, pague por consulta com crédito pré-pago.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/sefaz_to_nfce-mcp
+repository: https://github.com/mcp-dir/sefaz_to_nfce-mcp
+
+tags:
+  - sefaz_to_nfce
+  - brazil
+  - horizontal
+  - read-only
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_sefaz_to_nfce
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_sefaz_to_nfce/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
